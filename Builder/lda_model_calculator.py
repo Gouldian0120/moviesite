@@ -73,16 +73,16 @@ class LdaModel(object):
 
     def train(self, data = None, docs = None):
 
-        if data is None:
+        if data == None:
             data, docs = load_data()
 
         NUM_TOPICS = 10
-
+        n_products = len(data)
         self.lda_path = self.dirname + '/../lda/'
         if not os.path.exists(self.lda_path):
             os.makedirs(self.lda_path)
 
-        self.build_lda_model(data, docs, NUM_TOPICS)
+        dictionary, texts, lda_model = self.build_lda_model(data, docs, NUM_TOPICS)
 
     def tokenize(data):
         tokenizer = RegexpTokenizer(r'\w+')
